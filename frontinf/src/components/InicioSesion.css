@@ -1,0 +1,45 @@
+.inicio-sesion-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inicio-sesion-container h2 {
+    text-align: center;
+}
+
+.inicio-sesion-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inicio-sesion-container label {
+    font-weight: bold;
+}
+
+.inicio-sesion-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.inicio-sesion-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.inicio-sesion-container button:hover {
+    background-color: #0056b3;
+}

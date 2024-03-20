@@ -1,0 +1,74 @@
+.registro-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #333; /* Cambiado a color gris oscuro */
+    border-radius: 5px;
+    background-color: #333; /* Cambiado a color gris oscuro */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.registro-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff; /* Cambiado a color blanco */
+}
+
+.registro-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.registro-input-container {
+    margin-bottom: 15px;
+}
+
+.registro-label {
+    font-weight: bold;
+    color: #fff; /* Cambiado a color blanco */
+}
+
+.registro-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc; /* Cambiado a color gris claro */
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #ddd; /* Cambiado a color gris más claro */
+    color: #333; /* Cambiado a color negro */
+}
+
+.registro-submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.registro-submit-button:hover {
+    background-color: #0056b3;
+}
+
+.registro-login-text {
+    margin-top: 20px;
+    text-align: center;
+    color: #fff; /* Cambiado a color blanco */
+}
+
+.registro-login-button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.registro-login-button:hover {
+    color: #0056b3;
+}
