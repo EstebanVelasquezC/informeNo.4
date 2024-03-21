@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import CrearPublicacion from './CrearPublicacion'; // Importa el componente CrearPublicacion
-import './PantallaInicial.css'; // Importa el archivo CSS para estilos específicos de PantallaInicial
+import CrearPublicacion from './CrearPublicacion';
+import Comentario from './Comentario'; // Importa el componente Comentario
+import './PantallaInicial.css';
 
 const PantallaInicial = () => {
   const [filtroCurso, setFiltroCurso] = useState('');
@@ -10,28 +11,23 @@ const PantallaInicial = () => {
   const [mostrarNuevasPublicaciones, setMostrarNuevasPublicaciones] = useState(false);
   const [mostrarComentar, setMostrarComentar] = useState(false);
 
-  // Función para manejar el cambio en el filtro de curso
   const handleFiltroCursoChange = (event) => {
     setFiltroCurso(event.target.value);
   };
 
-  // Función para manejar el cambio en el filtro de catedrático
   const handleFiltroCatedraticoChange = (event) => {
     setFiltroCatedratico(event.target.value);
   };
 
-  // Función para mostrar el formulario de creación de publicación
   const mostrarFormularioCrearPublicacion = () => {
     setMostrarCrearPublicacion(true);
   };
 
-  // Función para enviar el comentario
   const enviarComentario = () => {
     console.log('Comentario:', comentario);
     setComentario('');
   };
 
-  // Función para buscar nuevas publicaciones
   const buscarNuevasPublicaciones = () => {
     console.log('Buscando nuevas publicaciones...');
     setMostrarNuevasPublicaciones(true);
@@ -42,7 +38,6 @@ const PantallaInicial = () => {
     <div className="pantalla-inicial-container">
       <h2>Bienvenido a la Pantalla Inicial</h2>
       
-      {/* Sección de filtros */}
       <div className="filtros-container">
         <h3>Buscar Publicaciones</h3>
         <div className="filtro">
@@ -55,31 +50,24 @@ const PantallaInicial = () => {
         </div>
       </div>
 
-      {/* Botón para buscar nuevas publicaciones */}
       {!mostrarNuevasPublicaciones && (
         <button onClick={buscarNuevasPublicaciones}>Buscar nuevas publicaciones</button>
       )}
 
-      {/* Sección de visualización de publicaciones */}
       {mostrarNuevasPublicaciones && (
         <div className="publicaciones-container">
-          {/* Aquí mostraríamos las publicaciones filtradas */}
-          <p>Publicaciones filtradas aparecerían aquí...</p>
+          <p>Sin nuevas publicaciones</p>
         </div>
       )}
 
-      {/* Área de comentarios */}
       {mostrarComentar && (
-        <div className="comentario-container">
-          <textarea value={comentario} onChange={(e) => setComentario(e.target.value)} placeholder="Escribe tu comentario aquí"></textarea>
-          <button onClick={enviarComentario}>Comentar</button>
-        </div>
+        <Comentario 
+          comentario={comentario} 
+          setComentario={setComentario} 
+          enviarComentario={enviarComentario} 
+        />
       )}
 
-      {/* Mensaje de "Sin nuevas publicaciones" si no hay */}
-      {mostrarNuevasPublicaciones && !mostrarComentar && <p>Sin nuevas publicaciones</p>}
-
-      {/* Mensaje de invitación a crear publicación */}
       {!mostrarCrearPublicacion && (
         <div className="crear-publicacion-container">
           <p>¿Quieres publicar algo?</p>
@@ -87,7 +75,6 @@ const PantallaInicial = () => {
         </div>
       )}
 
-      {/* Mostrar el formulario de creación de publicación si se ha solicitado */}
       {mostrarCrearPublicacion && <CrearPublicacion />}
     </div>
   );

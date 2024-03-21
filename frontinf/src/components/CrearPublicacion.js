@@ -83,12 +83,6 @@ const CrearPublicacion = ({ agregarComentario }) => {
                 </div>
                 <div>
                   <label>
-                    Nivel de Dificultad (del 1 al 5):
-                    <input type="number" value={nivelDificultad} min={1} max={5} onChange={(e) => setNivelDificultad(e.target.value)} />
-                  </label>
-                </div>
-                <div>
-                  <label>
                     Catedrático Recomendado:
                     <input type="text" value={catedraticoRecomendado} onChange={(e) => setCatedraticoRecomendado(e.target.value)} />
                   </label>
