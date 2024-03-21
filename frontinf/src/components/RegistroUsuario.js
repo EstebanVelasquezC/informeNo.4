@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './RegistroUsuario.css'; // Archivo de estilos CSS personalizado
-import InicioSesion from './InicioSesion'; // Importa el componente InicioSesion
+import InicioSesion from './InicioSesion';
 
 const RegistroUsuario = () => {
-    const [mostrarInicioSesion, setMostrarInicioSesion] = useState(false); // Estado para controlar si se muestra el componente InicioSesion
-
-    const handleIniciarSesion = () => {
-        setMostrarInicioSesion(true); // Al hacer clic en "Iniciar sesión", mostramos el componente InicioSesion
-    };
+    const [registroAcademico, setRegistroAcademico] = useState('');
+    const [nombres, setNombres] = useState('');
+    const [apellidos, setApellidos] = useState('');
+    const [contraseña, setContraseña] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [mostrarInicioSesion, setMostrarInicioSesion] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,11 +21,9 @@ const RegistroUsuario = () => {
         console.log('Correo electrónico:', correo);
     };
 
-    const [registroAcademico, setRegistroAcademico] = useState('');
-    const [nombres, setNombres] = useState('');
-    const [apellidos, setApellidos] = useState('');
-    const [contraseña, setContraseña] = useState('');
-    const [correo, setCorreo] = useState('');
+    const handleMostrarInicioSesion = () => {
+        setMostrarInicioSesion(true);
+    };
 
     return (
         <div className="registro-container">
@@ -52,8 +51,10 @@ const RegistroUsuario = () => {
                 </div>
                 <button type="submit" className="registro-submit-button">Registrarse</button>
             </form>
-            <p className="registro-login-text">¿Ya tienes una cuenta? <button className="registro-login-button" onClick={handleIniciarSesion}>Iniciar sesión</button></p>
-            {mostrarInicioSesion && <InicioSesion />} {/* Mostrar el componente InicioSesion si mostrarInicioSesion es true */}
+            {!mostrarInicioSesion && (
+                <p className="registro-login-text">¿Ya tienes una cuenta? <button className="registro-login-button" onClick={handleMostrarInicioSesion}>Iniciar sesión</button></p>
+            )}
+            {mostrarInicioSesion && <InicioSesion />}
         </div>
     );
 };
