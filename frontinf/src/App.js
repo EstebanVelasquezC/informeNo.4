@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import logo from './logo.svg';
-import CrearPublicacion from './components/CrearPublicacion'; // Importa el componente CrearPublicacion
+
+import PantallaInicial from './components/PantallaInicial'; // Importa el componente PantallaInicial
 import './App.css';
 
 function App() {
@@ -9,20 +9,12 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+          Informe No.4
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {/* Renderiza el componente CrearPublicacion */}
-          <CrearPublicacion />
+          
+          {/* Renderiza el componente PantallaInicial */}
+          <PantallaInicial />
         </header>
       </div>
     </Router>
