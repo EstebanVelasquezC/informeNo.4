@@ -1,41 +1,111 @@
-// CrearPublicacion.js
-
 import React, { useState } from 'react';
 
 const CrearPublicacion = () => {
-    const [titulo, setTitulo] = useState('');
-    const [contenido, setContenido] = useState('');
-    const [autor, setAutor] = useState('');
+  const [tipoPublicacion, setTipoPublicacion] = useState('curso');
+  const [mensaje, setMensaje] = useState('');
+  const [punteo, setPunteo] = useState(1);
+  const [consejo, setConsejo] = useState('');
+  const [opinionCatedratico, setOpinionCatedratico] = useState('');
+  const [nivelDificultad, setNivelDificultad] = useState(1);
+  const [catedraticoRecomendado, setCatedraticoRecomendado] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Aquí puedes agregar la lógica para manejar el envío del formulario
-        console.log('Se ha enviado la publicación:');
-        console.log('Título:', titulo);
-        console.log('Contenido:', contenido);
-        console.log('Autor:', autor);
-    };
+  const handleTipoPublicacionChange = (event) => {
+    setTipoPublicacion(event.target.value);
+  };
 
-    return (
-        <div className="crear-publicacion-container">
-            <h2>Crear Publicación</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Título:</label>
-                    <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
-                </div>
-                <div>
-                    <label>Contenido:</label>
-                    <textarea value={contenido} onChange={(e) => setContenido(e.target.value)} />
-                </div>
-                <div>
-                    <label>Autor:</label>
-                    <input type="text" value={autor} onChange={(e) => setAutor(e.target.value)} />
-                </div>
-                <button type="submit">Crear Publicación</button>
-            </form>
+  const handleMensajeChange = (event) => {
+    setMensaje(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Aquí iría la lógica para enviar la publicación al servidor
+    console.log('Publicación enviada:', {
+      tipoPublicacion,
+      mensaje,
+      punteo,
+      consejo,
+      opinionCatedratico,
+      nivelDificultad,
+      catedraticoRecomendado
+    });
+    // Limpiar el formulario
+    setTipoPublicacion('curso');
+    setMensaje('');
+    setPunteo(1);
+    setConsejo('');
+    setOpinionCatedratico('');
+    setNivelDificultad(1);
+    setCatedraticoRecomendado('');
+  };
+
+  return (
+    <div>
+      <h2>Crear Publicación</h2>
+      <div>
+        <label>
+          Tipo de Publicación:
+          <select value={tipoPublicacion} onChange={handleTipoPublicacionChange}>
+            <option value="curso">Curso</option>
+            <option value="catedratico">Catedrático</option>
+          </select>
+        </label>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            Mensaje:
+            <textarea value={mensaje} onChange={handleMensajeChange} />
+          </label>
         </div>
-    );
+        {tipoPublicacion === 'catedratico' && (
+          <>
+            <div>
+              <label>
+                Punteo (del 1 al 5):
+                <input type="number" value={punteo} min={1} max={5} onChange={(e) => setPunteo(e.target.value)} />
+              </label>
+            </div>
+            <div>
+              <label>
+                Consejo:
+                <input type="text" value={consejo} onChange={(e) => setConsejo(e.target.value)} />
+              </label>
+            </div>
+            <div>
+              <label>
+                Opinión del Catedrático:
+                <textarea value={opinionCatedratico} onChange={(e) => setOpinionCatedratico(e.target.value)} />
+              </label>
+            </div>
+          </>
+        )}
+        {tipoPublicacion === 'curso' && (
+          <>
+            <div>
+              <label>
+                Consejo:
+                <input type="text" value={consejo} onChange={(e) => setConsejo(e.target.value)} />
+              </label>
+            </div>
+            <div>
+              <label>
+                Nivel de Dificultad (del 1 al 5):
+                <input type="number" value={nivelDificultad} min={1} max={5} onChange={(e) => setNivelDificultad(e.target.value)} />
+              </label>
+            </div>
+            <div>
+              <label>
+                Catedrático Recomendado:
+                <input type="text" value={catedraticoRecomendado} onChange={(e) => setCatedraticoRecomendado(e.target.value)} />
+              </label>
+            </div>
+          </>
+        )}
+        <button type="submit">Crear Publicación</button>
+      </form>
+    </div>
+  );
 };
 
 export default CrearPublicacion;
