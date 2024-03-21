@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CrearPublicacion from './CrearPublicacion';
-import Comentario from './Comentario'; // Importa el componente Comentario
+import Comentario from './Comentario'; 
 import './PantallaInicial.css';
 
 const PantallaInicial = () => {

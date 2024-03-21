@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const InicioSesion = () => {
     const [usuario, setUsuario] = useState('');
@@ -8,12 +9,14 @@ const InicioSesion = () => {
     const [correoElectronico, setCorreoElectronico] = useState('');
     const [nuevaContraseña, setNuevaContraseña] = useState('');
     const [contraseñaRestablecida, setContraseñaRestablecida] = useState(false);
+    const history = useHistory();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Aquí puedes agregar la lógica para iniciar sesión
         console.log('Iniciando sesión con usuario:', usuario);
         console.log('Contraseña:', contraseña);
+
+        history.push('/pantalla-inicial/perfil-usuario');
     };
 
     const handleOlvidarContraseña = () => {
@@ -22,17 +25,16 @@ const InicioSesion = () => {
 
     const handleRestablecerContraseña = (event) => {
         event.preventDefault();
-        // Aquí puedes agregar la lógica para verificar y restablecer la contraseña
         console.log('Restableciendo contraseña para el usuario:', registroAcademico);
         console.log('Correo electrónico:', correoElectronico);
         console.log('Nueva contraseña:', nuevaContraseña);
 
-        // Simulación de restablecimiento de contraseña exitoso
+       
         setContraseñaRestablecida(true);
         setTimeout(() => {
             setContraseñaRestablecida(false);
-            setOlvidarContraseña(false); // Ocultar el formulario de restablecimiento de contraseña
-        }, 3000); // Ocultar el mensaje después de 3 segundos
+            setOlvidarContraseña(false); 
+        }, 3000); 
     };
 
     return (

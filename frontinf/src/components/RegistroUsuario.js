@@ -1,62 +1,73 @@
 import React, { useState } from 'react';
-import './RegistroUsuario.css'; // Archivo de estilos CSS personalizado
-import InicioSesion from './InicioSesion';
+import './PerfilUsuario.css';
 
-const RegistroUsuario = () => {
-    const [registroAcademico, setRegistroAcademico] = useState('');
-    const [nombres, setNombres] = useState('');
-    const [apellidos, setApellidos] = useState('');
-    const [contraseña, setContraseña] = useState('');
-    const [correo, setCorreo] = useState('');
-    const [mostrarInicioSesion, setMostrarInicioSesion] = useState(false);
+const PerfilUsuario = () => {
+  const [registroAcademico, setRegistroAcademico] = useState('');
+  const [usuarioEncontrado, setUsuarioEncontrado] = useState(null);
+  const [mostrarPerfil, setMostrarPerfil] = useState(false);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Aquí puedes agregar la lógica para enviar los datos del formulario al servidor
-        // Por ahora, solo mostraremos los datos en la consola
-        console.log('Registro Académico:', registroAcademico);
-        console.log('Nombres:', nombres);
-        console.log('Apellidos:', apellidos);
-        console.log('Contraseña:', contraseña);
-        console.log('Correo electrónico:', correo);
-    };
+  const buscarUsuario = () => {
+    const usuario = obtenerUsuarioPorRegistroAcademico(registroAcademico);
+    setUsuarioEncontrado(usuario);
+    setMostrarPerfil(true);
+  };
 
-    const handleMostrarInicioSesion = () => {
-        setMostrarInicioSesion(true);
-    };
+  const obtenerUsuarioPorRegistroAcademico = (registro) => {
+    if (registro === '123456') {
+      return {
+        nombre: 'John Doe',
+        correo: 'john.doe@example.com',
+        cursosAprobados: ['Curso 1', 'Curso 2']
+      };
+    } else {
+      return null;
+    }
+  };
 
-    return (
-        <div className="registro-container">
-            <h2 className="registro-title">Registro de Usuario</h2>
-            <form onSubmit={handleSubmit} className="registro-form">
-                <div className="registro-input-container">
-                    <label className="registro-label">Registro Académico:</label>
-                    <input type="text" className="registro-input" value={registroAcademico} onChange={(e) => setRegistroAcademico(e.target.value)} />
-                </div>
-                <div className="registro-input-container">
-                    <label className="registro-label">Nombres:</label>
-                    <input type="text" className="registro-input" value={nombres} onChange={(e) => setNombres(e.target.value)} />
-                </div>
-                <div className="registro-input-container">
-                    <label className="registro-label">Apellidos:</label>
-                    <input type="text" className="registro-input" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
-                </div>
-                <div className="registro-input-container">
-                    <label className="registro-label">Contraseña:</label>
-                    <input type="password" className="registro-input" value={contraseña} onChange={(e) => setContraseña(e.target.value)} />
-                </div>
-                <div className="registro-input-container">
-                    <label className="registro-label">Correo electrónico:</label>
-                    <input type="email" className="registro-input" value={correo} onChange={(e) => setCorreo(e.target.value)} />
-                </div>
-                <button type="submit" className="registro-submit-button">Registrarse</button>
-            </form>
-            {!mostrarInicioSesion && (
-                <p className="registro-login-text">¿Ya tienes una cuenta? <button className="registro-login-button" onClick={handleMostrarInicioSesion}>Iniciar sesión</button></p>
-            )}
-            {mostrarInicioSesion && <InicioSesion />}
+  const obtenerValorCampo = (valor) => {
+    return valor || 'Datos no encontrados';
+  };
+
+  const buscarOtroUsuario = () => {
+    setRegistroAcademico('');
+    setUsuarioEncontrado(null);
+    setMostrarPerfil(false);
+  };
+
+  return (
+    <div className="perfil-usuario-container">
+      <h2>Perfil de Usuario</h2>
+      <div className="buscar-usuario">
+        <input
+          type="text"
+          value={registroAcademico}
+          onChange={(e) => setRegistroAcademico(e.target.value)}
+          placeholder="Ingrese el registro académico del usuario"
+        />
+        <button onClick={buscarUsuario}>Buscar</button>
+      </div>
+      {mostrarPerfil && (
+        <div className="informacion-personal">
+          <h3>Información Personal</h3>
+          <p>Nombre: <input type="text" value={obtenerValorCampo(usuarioEncontrado?.nombre)} readOnly /></p>
+          <p>Correo Electrónico: <input type="text" value={obtenerValorCampo(usuarioEncontrado?.correo)} readOnly /></p>
+          <div className="cursos-aprobados">
+            <h3>Cursos Aprobados</h3>
+            <ul>
+              {usuarioEncontrado?.cursosAprobados ? (
+                usuarioEncontrado.cursosAprobados.map((curso, index) => (
+                  <li key={index}>{curso}</li>
+                ))
+              ) : (
+                <li>{obtenerValorCampo(null)}</li>
+              )}
+            </ul>
+          </div>
+          <button onClick={buscarOtroUsuario}>Buscar otro usuario</button>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
-export default RegistroUsuario;
+export default PerfilUsuario;

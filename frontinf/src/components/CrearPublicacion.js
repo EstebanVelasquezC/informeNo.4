@@ -20,7 +20,6 @@ const CrearPublicacion = ({ agregarComentario }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Aquí iría la lógica para enviar la publicación al servidor
     console.log('Publicación enviada:', {
       tipoPublicacion,
       mensaje,
@@ -31,7 +30,6 @@ const CrearPublicacion = ({ agregarComentario }) => {
       nivelDificultad,
       catedraticoRecomendado
     });
-    // Limpiar el formulario
     setTipoPublicacion('');
     setMensaje('');
     setCurso('');
@@ -41,7 +39,6 @@ const CrearPublicacion = ({ agregarComentario }) => {
     setNivelDificultad(1);
     setCatedraticoRecomendado('');
 
-    // Simulación de agregar comentario (código de ejemplo)
     agregarComentario('id_publicacion_ejemplo', { usuario: 'UsuarioEjemplo', comentario: mensaje });
   };
 

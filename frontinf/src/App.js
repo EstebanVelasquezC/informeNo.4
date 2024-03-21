@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import PantallaInicial from './components/PantallaInicial'; // Importa el componente PantallaInicial
-import PerfilUsuario from './components/PerfilUsuario'; // Importa el componente PerfilUsuario
+import PantallaInicial from './components/PantallaInicial'; 
+import PerfilUsuario from './components/PerfilUsuario'; 
 import './App.css';
 
 function App() {

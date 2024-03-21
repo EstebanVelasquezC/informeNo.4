@@ -7,16 +7,13 @@ const PerfilUsuario = () => {
   const [mostrarPerfil, setMostrarPerfil] = useState(false);
 
   const buscarUsuario = () => {
-    // Simulación de búsqueda de usuario por registro académico
     const usuario = obtenerUsuarioPorRegistroAcademico(registroAcademico);
     setUsuarioEncontrado(usuario);
     setMostrarPerfil(true);
   };
 
-  // Función de simulación para obtener un usuario por su registro académico
   const obtenerUsuarioPorRegistroAcademico = (registro) => {
-    // En una aplicación real, aquí realizarías una solicitud a tu backend o base de datos para obtener la información del usuario por su registro académico
-    // Por ahora, simulamos la búsqueda con algunos datos fijos
+   
     if (registro === '123456') {
       return {
         nombre: 'John Doe',
@@ -28,12 +25,12 @@ const PerfilUsuario = () => {
     }
   };
 
-  // Función para obtener el valor del campo de texto del usuario o el mensaje de "Datos no encontrados"
+ 
   const obtenerValorCampo = (valor) => {
     return valor || 'Datos no encontrados';
   };
 
-  // Función para ocultar la información del perfil y restablecer el campo de búsqueda
+ 
   const buscarOtroUsuario = () => {
     setRegistroAcademico('');
     setUsuarioEncontrado(null);
@@ -77,4 +74,3 @@ const PerfilUsuario = () => {
 };
 
 export default PerfilUsuario;
-
